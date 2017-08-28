@@ -16,6 +16,14 @@ var requestHandler = function(request, response) {
     HINT: explore the request object and its properties 
     http://stackoverflow.com/questions/17251553/nodejs-request-object-documentation
    */
+   //console.log(parsedUrl.pathname);
+   if(request.method=='GET' && parsedUrl.pathname == '/listings'){
+      response.writeHead(200, {"Content-Type": "text/json"});
+      response.end(JSON.stringify(listingData));
+   } else {
+      response.writeHead(404);
+      response.end('Bad gateway error');
+   }
 };
 
 fs.readFile('listings.json', 'utf8', function(err, data) {
@@ -23,4 +31,14 @@ fs.readFile('listings.json', 'utf8', function(err, data) {
     This callback function should save the data in the listingData variable, 
     then start the server. 
    */
+    if(err){
+
+    } else {
+      listingData = JSON.parse(data);
+    }
+
+    server = http.createServer(requestHandler);
+    server.listen(port, function(){
+        console.log('server started');
+    });
 });
