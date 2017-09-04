@@ -21,12 +21,14 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
        };
        $scope.listings.push($scope.temp);
     };
-    $scope.deleteListing = function(index) {
-      $scope.listings.splice(index,1);
+    $scope.deleteListing = function(list) {
+      $scope.index = $scope.listings.indexOf(list);
+      $scope.listings.splice($scope.index,1);
     };
-    $scope.showDetails = function(index) {
+    $scope.showDetails = function(list) {
+      $scope.index = $scope.listings.indexOf(list);
       $scope.showListingDetail = true;
-      $scope.current = $scope.listings[index];
+      $scope.current = $scope.listings[$scope.index];
     };
   }
 ]);

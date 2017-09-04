@@ -29,11 +29,11 @@
                       * include a way to remove individual listings
 
                 --> 
-              <tr ng-repeat="list in listings | filter : search" ng-click="showDetails($index)">
+              <tr ng-repeat="list in listings | filter : search" ng-click="showDetails(list)">
                 <td>{{list.code}}</td>
                 <td>{{list.name}}</td>
 
-                <td><button type="button" class="close" aria-label="Close" ng-click="deleteListing($index)">
+                <td><button type="button" class="close" aria-label="Close" ng-click="deleteListing(list)">
                   <span aria-hidden="true">&times;</span>
                 </button></td>
 
